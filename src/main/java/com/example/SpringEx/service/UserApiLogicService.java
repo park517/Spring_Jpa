@@ -1,6 +1,7 @@
 package com.example.SpringEx.service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,19 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
 
 	@Override
 	public Header<UserApiResponse> read(Long id) {
-
-		return null;
+		
+		// id -> repository getOne , getById
+		Optional<User> optional = userRepository.findById(id);
+		
+		// user -> userApiResponce return
+		return optional
+				//optional 를 user로 하여 response 메소드에 user를 넣어서 만약 user가 널값이라면
+				// Header에 ERROR 에  데이터 없음을 보낸다.
+				.map(user -> response(user)) 
+				.orElseGet(
+						() -> Header.ERROR("데이터 없음")
+				);
+		
 	}
 
 	@Override
