@@ -1,5 +1,6 @@
 package com.example.SpringEx.model.network.request;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -8,23 +9,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class UserApiRequest {
+public class ItemApiRequest {
+
 	private Long id;
-	
-	private String account;
-	
-	private String password;
 	
 	private String status;
 	
-	private String email; 
+	private String name;
 	
-	private String phoneNumber;
+	private String title;
+	
+	private String content;
+	
+	private BigDecimal price;
+	
+	private String brandName;
 	
 	private LocalDateTime registeredAt;
 
 	private LocalDateTime unregisteredAt;
+	
+	private Long partnerId;
 }
